@@ -1,0 +1,7 @@
+node_modules
+
+data/csv/*.csv
+!data/csv/.gitkeep
+
+data/playlists/*
+!data/playlists/.gitkeep
