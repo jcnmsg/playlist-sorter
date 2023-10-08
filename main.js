@@ -5,22 +5,6 @@ import { hideBin } from 'yargs/helpers';
 
 const args = ['songs', 'playlist', 'output'];
 const argv = yargs(hideBin(process.argv)).argv;
-const outputDir = path.join(argv.output, path.basename(argv.playlist, '.csv'));
-const playlist = fs.readFileSync(argv.playlist, 'utf8');
-const songs = playlist
-  .split('\n')
-  .map((line) => {
-    let [, , title, album, artist] = line ? line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) : [];
-
-    title = title ? title.replace(/"/g, '') : '';
-    album = album ? album.replace(/"/g, '') : '';
-    artist = artist ? artist.replace(/"/g, '').split(',')[0] : '';
-
-    if (artist && album && title) {
-      return { artist, album, title };
-    }
-  })
-  .filter((song, index) => index > 0 && song);
 
 // Validate args
 args.forEach((arg) => {
@@ -40,6 +24,23 @@ args.forEach((arg) => {
     throw new Error(`Output directory does not exist: ${argv[arg]}`);
   }
 });
+
+const outputDir = path.join(argv.output, path.basename(argv.playlist, '.csv'));
+const playlist = fs.readFileSync(argv.playlist, 'utf8');
+const songs = playlist
+  .split('\n')
+  .map((line) => {
+    let [, , title, album, artist] = line ? line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) : [];
+
+    title = title ? title.replace(/"/g, '') : '';
+    album = album ? album.replace(/"/g, '') : '';
+    artist = artist ? artist.replace(/"/g, '').split(',')[0] : '';
+
+    if (artist && album && title) {
+      return { artist, album, title };
+    }
+  })
+  .filter((song, index) => index > 0 && song);
 
 // Create output dir
 if (!existsSync(outputDir)) {
