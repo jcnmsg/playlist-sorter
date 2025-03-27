@@ -30,7 +30,7 @@ const playlist = fs.readFileSync(argv.playlist, 'utf8');
 const songs = playlist
   .split('\n')
   .map((line) => {
-    let [, , title, album, artist] = line ? line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) : [];
+    let [, title, album, artist] = line ? line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) : [];
 
     title = title ? title.replace(/"/g, '') : '';
     album = album ? album.replace(/"/g, '') : '';
