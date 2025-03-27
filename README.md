@@ -4,7 +4,7 @@ A local playlist sorter for songs downloaded via Soggfy.
 
 ## The problem
 
-Downloading songs using Soggfy automatically sorts them into `Artist/Album/Song` or a variation of that like `Artist1,Artist2,Artist3/Album/CDX/Song`. If you want to resort those songs into a playlist here's how.
+Downloading songs using Soggfy automatically sorts them into `Artist/Album/Song` or a variation of that like `Artist1,Artist2,Artist3/Album/CDX/Song`. If you want to re-sort those songs into a playlist here's how.
 
 ## How to use
 
